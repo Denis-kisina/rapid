@@ -24,9 +24,9 @@ paths:
             example: 00000000-0000-0000-0000-000000000001
           required: false
           description: API Key of the user
-      security:
-        - http-basic: []
-        - api_key: []
+      # security:
+      #   - http-basic: []
+      #   - api_key: []
   /v1/software-cpe/mappings/files:
     post:
       description: Sending data using `multipart/form-data`
