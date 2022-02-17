@@ -1,0 +1,111 @@
+openapi: 3.0.1
+info:
+  title: Gargoyle Authentication
+  description: Authentication to acccess the API
+servers:
+  - url: https://apigargoyle.com/
+paths:
+  /docs:
+    get:
+      description: General API Documentation
+      parameters:
+        - in: header
+          name: userId
+          schema:
+            type: string
+            example: denis
+          required: true
+          description: ID of the user
+        - in: header
+          name: apiKey
+          schema:
+            type: string
+            format: uuid
+            example: 00000000-0000-0000-0000-000000000001
+          required: false
+          description: API Key of the user
+      security:
+        - http-basic: []
+        - api_key: []
+  /v1/software-cpe/mappings/files:
+    post:
+      description: Sending data using `multipart/form-data`
+      parameters:
+        - in: parameter
+          name: from
+          schema:
+            type: string
+            format: date
+            example: 2021-01-30
+          required: false
+          description: Date from which records needs to be fetched.
+        - in: parameter
+          name: to
+          schema:
+            type: string
+            format: date
+            example: 2021-01-30
+        - in: header
+          name: userId
+          schema:
+            type: string
+            example: denis
+          required: true
+          description: ID of the user
+        - in: header
+          name: apiKey
+          schema:
+            type: string
+            format: uuid
+            example: 00000000-0000-0000-0000-000000000001
+          required: false
+          description: API Key of the user
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+
+
+          required: false
+          description: Date to which records needs to be fetched.
+      security:
+        - http-basic: []
+        - api_key: []
+components:
+  securitySchemes:
+    http-basic:
+      type: http
+      scheme: basic
+    http-bearer:
+      type: http
+      scheme: bearer
+    api_key:
+      type: apiKey
+      name: apiKey
+      in: header
+schemas:
+    SoftwareCpeCveMappingsSearchCriteria:
+      type: object
+      properties:
+        from:
+          type: localDate
+          required: true
+          description: Date from which records needs to be fetched.
+          example: 10
+          format: date
+        to:
+          type: localDate
+          description: Date till which records needs to be fetched.
+          examples: 10
+    MultipartFileRequestDto:
+      type: object
+      properties:
+        file:
+          type:  string
+          format: binary
+          required: true
