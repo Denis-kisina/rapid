@@ -85,48 +85,6 @@ rapi-doc {
         allow-authentication="false">
 
     </rapi-doc>
-        function setApiServer(ev) {
-            const docEl = document.getElementById('thedoc');
-            const trEl = ev.target.closest('tr');
-            const serverUrl = trEl.querySelector('#server-url').value;
-            result = docEl.setApiServer(serverUrl);
-            ev.target.innerText = result ? 'Applied !' : 'Failed';
-            ev.target.style.backgroundColor = result ? 'green' : 'orangered';
-            window.setTimeout(function () {
-                ev.target.innerText = 'Apply';
-                ev.target.style.backgroundColor = '#2069e0';
-            }, 5000)
-
-        }
-
-        function clearSecurityKeys(ev) {
-            const docEl = document.getElementById('thedoc');
-            docEl.removeAllSecurityKeys();
-        }
-
-        function setSecurity(ev, securityType) {
-            const docEl = document.getElementById('thedoc');
-            const trEl = ev.target.closest('tr');
-            let result;
-            if (securityType === 'http') {
-                const securitySchemeId = trEl.querySelector('#http-security-scheme-id').value;
-                const username = trEl.querySelector('#http-username').value;
-                const password = trEl.querySelector('#http-password').value;
-                result = docEl.setHttpUserNameAndPassword(securitySchemeId, username, password);
-            } else if (securityType === 'apikey') {
-                const securitySchemeId = trEl.querySelector('#api-security-scheme-id').value;
-                const newApiToken = trEl.querySelector('#api-key-value').value;
-                result = docEl.setApiKey(securitySchemeId, newApiToken);
-            }
-            ev.target.innerText = result ? 'Applied !' : 'Failed';
-            ev.target.style.backgroundColor = result ? 'green' : 'orangered';
-            window.setTimeout(function () {
-                ev.target.innerText = 'Apply';
-                ev.target.style.backgroundColor = '#2069e0';
-            }, 5000)
-        }
-    </script> -->
-
 </body>
 
 </html>
