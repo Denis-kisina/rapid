@@ -14,7 +14,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <script type="module" src="rapidoc-min.js"></script>
+    <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&family=Roboto+Mono&display=swap"
         rel="stylesheet">
     <style>
@@ -34,7 +34,39 @@
         render-style="read" 
         show-header="false"
         allow-authentication="false">
-
+        <div slot='operations-top' hidden>
+            <div
+                style="font-size:14px; border:0; background-color: #282828; border-radius:4px; padding:16px; margin:16px 75px">
+                <table>
+                    <tr>
+                        <td> HTTP Basic</td>
+                        <td>
+                            <input class='size txt' id='http-security-scheme-id' value="http-basic" type='text'
+                                placeholder='Security Scheme ID' spellcheck='false' style="width:120px" hidden>
+                            <input class='size txt' id='http-username' type='text' value="userId"
+                                placeholder='User name' spellcheck='false'>
+                            <input class='size txt' id='http-password' type='text' value="password"
+                                placeholder='Password' spellcheck='false'>
+                            <button class='size btn' onclick='setSecurity(event, "http")'>Login</button>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td> API Key</td>
+                        <td>
+                            <input class='size txt' id='api-security-scheme-id' value="api_key" type='text'
+                                placeholder='Security Scheme ID' spellcheck='false' style="width:120px">
+                            <input class='size txt' id='api-key-value' type='text' value="apiKey"
+                                placeholder='API Key Value' spellcheck='false'>
+                            <button class='size btn' onclick='setSecurity(event, "apikey")'>Apply</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button class='size btn' style="width:200px"
+                                onclick='clearSecurityKeys(event)'>Clear all Keys</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </rapi-doc>
     <script>
         function setApiServer(ev) {
